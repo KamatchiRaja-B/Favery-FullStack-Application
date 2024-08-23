@@ -40,3 +40,21 @@ function closeModal() {
         modal.style.display = 'none';
     });
 }
+
+document.querySelectorAll('.quantity-container').forEach(container => {
+    const minusBtn = container.querySelector('.minus');
+    const plusBtn = container.querySelector('.plus');
+    const quantityInput = container.querySelector('.quantity-number');
+
+    minusBtn.addEventListener('click', () => {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 0) {
+            quantityInput.value = currentValue - 1;
+        }
+    });
+
+    plusBtn.addEventListener('click', () => {
+        let currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+    });
+});

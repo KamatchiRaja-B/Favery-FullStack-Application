@@ -48,17 +48,24 @@
 		        <div class="menu-card">
 		            <div class="menu-image-container">
 		                <img src="images/<% menu.getImgPath(); %>" 
-		                alt="Menu Image of <% menu.getMenuName(); %> ">
+		                alt="Menu Image of <% out.println(menu.getMenuName()); %> ">
 		            </div>
 		            <div class="menu-content">
 		                <div class="menu-title"><% out.println(menu.getMenuName()); %></div>
 		                <div class="menu-description"><% out.println(menu.getDescription()); %></div>
 		                <div class="menu-price">$<% out.println(menu.getPrice()); %></div>
+		                <div class="quantity-container">
+		                    <button class="quantity-btn minus">-</button>
+		                    <input type="text" value="0" class="quantity-number" readonly>
+		                    <button class="quantity-btn plus">+</button>
+		                </div>
 		                <button class="btn add-to-cart">Add to Cart</button>
 		            </div>
 		        </div>
 		 	<% } %>      
 	    </div>
+	    
+	    <script src="js/script.js"></script>
 	</body>
 
 </html>
