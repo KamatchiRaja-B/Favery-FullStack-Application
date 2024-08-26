@@ -48,7 +48,7 @@ document.querySelectorAll('.quantity-container').forEach(container => {
 
     minusBtn.addEventListener('click', () => {
         let currentValue = parseInt(quantityInput.value);
-        if (currentValue > 0) {
+        if (currentValue > 1) {  // Update to ensure minimum value is 1
             quantityInput.value = currentValue - 1;
         }
     });

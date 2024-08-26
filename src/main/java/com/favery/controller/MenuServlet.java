@@ -25,7 +25,7 @@ public class MenuServlet extends HttpServlet {
 		int restaurantId = Integer.parseInt(req.getParameter("restaurantId").trim());
 		MenuDao menuDao = new MenuDaoImpl();
 		List<Menu> menusList = menuDao.getAllMenusByRestaurant(restaurantId);
-		
+
 		RestaurantDao restaurantDao = new RestaurantDaoImpl();
         Restaurant restaurant = restaurantDao.getRestaurant(restaurantId);
 		

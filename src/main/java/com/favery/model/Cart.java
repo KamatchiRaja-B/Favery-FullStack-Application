@@ -27,7 +27,9 @@ public class Cart {
 				items.remove(menuId);
 			}
 			else {
-				items.get(menuId).setQuantity(quantity);
+				CartItem cartItem = items.get(menuId);
+				cartItem.setQuantity(quantity);
+				cartItem.setSubTotal((quantity * cartItem.getPrice()));
 			}
 		}
 	}

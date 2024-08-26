@@ -34,9 +34,9 @@
 		                <li>Favery</li>
 		            </div>
 		            <div class="center">
-		                <li class="home"><a href="#">Home</a></li>
-		                <li class="active"><a href="#">Cart</a></li>
-		                <li><a href="#">Order History</a></li>
+		                <li class="active"><a href="#">Home</a></li>
+		                <li><a href="cart.jsp">Cart</a></li>
+		                <li><a href="#">Orders</a></li>
 		            </div>
 		            <div class="rightend">
 		                <a href="index.jsp"><button class="btn">Logout</button></a>
@@ -53,7 +53,7 @@
 			            <div class="card">
 			                <div class="image-container">
 			                    <img src="images/<% restaurant.getImagePath(); %>" 
-			                    	alt="Image of <% restaurant.getRestaurantName(); %> ">
+			                    	alt="Image of <% out.println(restaurant.getRestaurantName()); %> ">
 			                </div>
 			                <div class="content">
 			                    <div>
