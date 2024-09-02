@@ -33,6 +33,7 @@
 	            </div>
 	            <div class="center">
 	                <li><a href="home.jsp">Home</a></li>
+	                <li><a href="updateProfile.jsp">Update Profile</a></li>
 	                <li class="active"><a href="#">Cart</a></li>
 	                <li><a href="orderHistoryServlet">Orders</a></li>
 	            </div>

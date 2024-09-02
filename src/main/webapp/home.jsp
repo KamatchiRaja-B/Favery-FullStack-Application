@@ -35,6 +35,7 @@
 		            </div>
 		            <div class="center">
 		                <li class="active"><a href="#">Home</a></li>
+		                <li><a href="updateProfile.jsp">Update Profile</a></li>
 		                <li><a href="cart.jsp">Cart</a></li>
 		                <li><a href="orderHistoryServlet">Orders</a></li>
 		            </div>

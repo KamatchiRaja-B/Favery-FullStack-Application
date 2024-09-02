@@ -58,7 +58,8 @@
 	        %>
 	        <div class="order-item-card">
 	            <div class="order-image-container">
-	                <img src="/Favery-Frontend-Pages/img/Delivery Boy.png" alt="Menu Image">
+	                <img src="<%= menu.getImgPath() %>" 
+                        alt="Menu Image of <%= menu.getMenuName() %> ">
 	            </div>
 	            <div class="order-details">
 	                <div>

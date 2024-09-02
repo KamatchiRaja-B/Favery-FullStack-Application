@@ -775,7 +775,7 @@ header h1::after {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Poppins', sans-serif;
     width: 100%;
-    max-width: 622px;
+    max-width: 625px;
     margin: 0 auto;
 }
 
@@ -829,3 +829,31 @@ header h1::after {
     font-size: 15px;
     margin-right: 35px;
 }
+
+/* updateProfile design */
+
+.updateProfile {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

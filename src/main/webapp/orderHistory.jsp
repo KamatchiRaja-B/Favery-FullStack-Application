@@ -26,6 +26,7 @@
 	            </div>
 	            <div class="center">
 	                <li><a href="home.jsp">Home</a></li>
+	                <li><a href="updateProfile.jsp">Update Profile</a></li>
 	                <li><a href="cart.jsp">Cart</a></li>
 	                <li class="active"><a href="#">Orders</a></li>
 	            </div>
