@@ -27,10 +27,10 @@
             <div class="center">
                 <li><a href="home.jsp">Home</a></li>
                 <li><a href="cart.jsp">Cart</a></li>
-                <li><a href="#">Orders</a></li>
+                <li><a href="orderHistory.jsp">Orders</a></li>
             </div>
             <div class="rightend">
-                <a href="index.jsp"><button class="btn">Logout</button></a>
+                <a href="logout"><button class="btn">Logout</button></a>
             </div>
         </ul>
     </nav>
@@ -51,7 +51,7 @@
             for(Menu menu : menusList) { %>
                 <div class="menu-card">
                     <div class="menu-image-container">
-                        <img src="images/<%= menu.getImgPath() %>" 
+                        <img src="<%= menu.getImgPath() %>" 
                         alt="Menu Image of <%= menu.getMenuName() %> ">
                     </div>
                     <div class="menu-content">
@@ -70,7 +70,7 @@
                         </form>
                     </div>
                 </div>
-            <% } 
+            <% }
         } %>      
     </div>
     

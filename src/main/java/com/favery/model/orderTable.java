@@ -1,19 +1,19 @@
 package com.favery.model;
 
-public class orderTable {
+public class OrderTable {
 	
 	private int orderId;
 	private int restaurantId;
 	private int userId;
-	private Float totalAmount;
+	private float totalAmount;
 	private String status;
 	private String paymentMode;
 
-	public orderTable() {
+	public OrderTable() {
 		super();
 	}
 
-	public orderTable(int orderId, int restaurantId, int userId, Float totalAmount, String status, String paymentMode) {
+	public OrderTable(int orderId, int restaurantId, int userId, float totalAmount, String status, String paymentMode) {
 		super();
 		this.orderId = orderId;
 		this.restaurantId = restaurantId;
@@ -23,7 +23,7 @@ public class orderTable {
 		this.paymentMode = paymentMode;
 	}
 
-	public orderTable(int restaurantId, int userId, Float totalAmount, String status, String paymentMode) {
+	public OrderTable(int restaurantId, int userId, float totalAmount, String status, String paymentMode) {
 		super();
 		this.restaurantId = restaurantId;
 		this.userId = userId;
@@ -56,11 +56,11 @@ public class orderTable {
 		this.userId = userId;
 	}
 
-	public Float getTotalAmount() {
+	public float getTotalAmount() {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(Float totalAmount) {
+	public void setTotalAmount(float totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 

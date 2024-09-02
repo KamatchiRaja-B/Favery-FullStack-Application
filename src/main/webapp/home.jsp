@@ -36,10 +36,10 @@
 		            <div class="center">
 		                <li class="active"><a href="#">Home</a></li>
 		                <li><a href="cart.jsp">Cart</a></li>
-		                <li><a href="#">Orders</a></li>
+		                <li><a href="orderHistoryServlet">Orders</a></li>
 		            </div>
 		            <div class="rightend">
-		                <a href="index.jsp"><button class="btn">Logout</button></a>
+		                <a href="logout"><button class="btn">Logout</button></a>
 		            </div>
 		        </ul>
 		    </nav>
@@ -52,8 +52,8 @@
 			        <% for(Restaurant restaurant : restaurantList) {%>
 			            <div class="card">
 			                <div class="image-container">
-			                    <img src="images/<% restaurant.getImagePath(); %>" 
-			                    	alt="Image of <% out.println(restaurant.getRestaurantName()); %> ">
+				                <img src="<%= restaurant.getImagePath() %>" 
+	                                alt="Image of <%= restaurant.getRestaurantName() %>">
 			                </div>
 			                <div class="content">
 			                    <div>

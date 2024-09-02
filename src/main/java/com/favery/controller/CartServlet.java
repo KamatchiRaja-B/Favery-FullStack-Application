@@ -47,9 +47,6 @@ public class CartServlet extends HttpServlet {
 		MenuDao menuDao = new MenuDaoImpl();
 		Menu menu = menuDao.getMenu(menuId);
 		
-		HttpSession session = req.getSession();
-		session.setAttribute("restaurantId", menu.getRestaurantId());
-		
 		if(menu != null) {
 			CartItem item = new CartItem(
 					menu.getMenuId(), 

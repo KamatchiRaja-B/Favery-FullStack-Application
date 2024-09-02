@@ -14,7 +14,6 @@ import com.favery.dao.RestaurantDao;
 import com.favery.daoimpl.RestaurantDaoImpl;
 import com.favery.model.Restaurant;
 
-@SuppressWarnings("serial")
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 	@Override

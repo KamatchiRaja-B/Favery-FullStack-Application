@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.favery.model.CartItem, com.favery.model.Cart, java.util.Map, com.favery.daoimpl.RestaurantDaoImpl, com.favery.model.Restaurant, 
-			com.favery.daoimpl.MenuDaoImpl, com.favery.model.Menu" %>
+<%@ page import="com.favery.model.CartItem, com.favery.model.Cart, 
+				java.util.Map, com.favery.daoimpl.RestaurantDaoImpl, 
+				com.favery.model.Restaurant, com.favery.daoimpl.MenuDaoImpl, com.favery.model.Menu" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,7 +24,7 @@
 	        RestaurantDaoImpl restaurantDao = new RestaurantDaoImpl();
 	        MenuDaoImpl menuDao = new MenuDaoImpl();
 	        boolean flag = true;
-	    %> 
+	    %>
 	    <nav>
 	        <ul class="navbar">
 	            <div class="leftend">
@@ -33,10 +34,10 @@
 	            <div class="center">
 	                <li><a href="home.jsp">Home</a></li>
 	                <li class="active"><a href="#">Cart</a></li>
-	                <li><a href="#">Orders</a></li>
+	                <li><a href="orderHistoryServlet">Orders</a></li>
 	            </div>
 	            <div class="rightend">
-	                <a href="index.jsp"><button class="btn">Logout</button></a>
+	                <a href="logout"><button class="btn">Logout</button></a>
 	            </div>
 	        </ul>
 	    </nav>
@@ -49,13 +50,15 @@
 	    	<%
 	    		if(cartItems != null && !cartItems.isEmpty()) {
 	    			for(CartItem item : cartItems.values()) {
+	 
 	    				Restaurant restaurant = restaurantDao.getRestaurant(item.getRestaurantId());
+	    				
 	    				Menu menu = menuDao.getMenu(item.getMenuId());
 	    				if(restaurant != null && menu != null) {  
 	    	%>
 	        <div class="cart-item">
 	            <div class="image-container">
-	                <img src="images/<%= menu.getImgPath() %>" alt="Menu Image of <%= item.getMenuName() %> "> <!-- Ensure imgPath is correct -->
+	                <img src="<%= menu.getImgPath() %>" alt="Menu Image of <%= item.getMenuName() %> "> <!-- Ensure imgPath is correct -->
 	            </div>
 	            <div class="details">
 	                <div class="restaurant-info">
@@ -102,7 +105,10 @@
 	    	if(session.getAttribute("cart") != null && flag == true) {
 	    %>
 		    <div class="proceed-to-checkout">
-		        <form action="checkOut.jsp" method="post">
+		    	<form action="menu.jsp" method="post" style="margin-right: 15px;">
+		            <button type="submit" class="btn">Add more items</button>
+		        </form>
+		        <form action="checkout.jsp" method="post">
 		            <button type="submit" class="btn">Proceed To Checkout</button>
 		        </form>
 		    </div>

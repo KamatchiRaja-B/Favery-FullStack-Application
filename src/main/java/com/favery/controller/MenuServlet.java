@@ -17,7 +17,6 @@ import com.favery.daoimpl.RestaurantDaoImpl;
 import com.favery.model.Menu;
 import com.favery.model.Restaurant;
 
-@SuppressWarnings("serial")
 @WebServlet("/menu")
 public class MenuServlet extends HttpServlet {
 	@Override
@@ -30,11 +29,14 @@ public class MenuServlet extends HttpServlet {
         Restaurant restaurant = restaurantDao.getRestaurant(restaurantId);
 		
         HttpSession session = req.getSession();
-		if(!menusList.isEmpty()) {
-			session.setAttribute("menusList", menusList);
-		}
-		session.setAttribute("restaurant", restaurant);
+        session.setAttribute("restaurant", restaurant);
+        
+        if (menusList != null && !menusList.isEmpty()) {
+            session.setAttribute("menusList", menusList);
+        } 
+        else {
+            session.removeAttribute("menusList");
+        }
 		resp.sendRedirect("menu.jsp");
 	}
-
 }

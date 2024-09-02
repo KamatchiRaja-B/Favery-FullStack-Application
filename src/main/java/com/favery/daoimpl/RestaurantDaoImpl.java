@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.favery.dao.RestaurantDao;
 import com.favery.model.Restaurant;
@@ -54,19 +56,30 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
     @Override
     public Restaurant getRestaurant(int restaurantId) {
-        try {
-            pstmt = con.prepareStatement(SELECT_QUERY);
+        Restaurant restaurant = null;
+        try (PreparedStatement pstmt = con.prepareStatement(SELECT_QUERY)) {
             pstmt.setInt(1, restaurantId);
-            res = pstmt.executeQuery();
-            restaurantList = extractRestaurantFromResultSet(res);
-            if (!restaurantList.isEmpty()) {
-                restaurant = restaurantList.get(0);
+            try (ResultSet res = pstmt.executeQuery()) {
+                if (res.next()) {
+                    int id = res.getInt("restaurantId");
+                    String restaurantName = res.getString("restaurantName");
+                    int deliveryTime = res.getInt("deliveryTime");
+                    String cuisineType = res.getString("cuisineType");
+                    String address = res.getString("address");
+                    float ratings = res.getFloat("ratings");
+                    boolean isActive = res.getBoolean("isActive");
+                    int adminType = res.getInt("adminId");
+                    String imagePath = res.getString("imagePath");
+
+                    restaurant = new Restaurant(id, restaurantName, deliveryTime, cuisineType, address, ratings, isActive, adminType, imagePath);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return restaurant;
     }
+
 
     @Override
     public int updateRestaurant(Restaurant restaurant) {
@@ -84,7 +97,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
             status = pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }		
         return status;
     }
 
@@ -133,4 +146,5 @@ public class RestaurantDaoImpl implements RestaurantDao {
         }
         return restaurantList;
     }
+
 }

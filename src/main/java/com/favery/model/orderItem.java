@@ -1,6 +1,6 @@
 package com.favery.model;
 
-public class orderItem {
+public class OrderItem {
 	
 	private int orderItemId;
 	private int orderId;
@@ -8,11 +8,11 @@ public class orderItem {
 	private int quantity;
 	private float subTotal;
 
-	public orderItem() {
+	public OrderItem() {
 		super();
 	}
 
-	public orderItem(int orderItemId, int orderId, int menuId, int quantity, float subTotal) {
+	public OrderItem(int orderItemId, int orderId, int menuId, int quantity, float subTotal) {
 		super();
 		this.orderItemId = orderItemId;
 		this.orderId = orderId;
@@ -21,7 +21,7 @@ public class orderItem {
 		this.subTotal = subTotal;
 	}
 
-	public orderItem(int orderId, int menuId, int quantity, float subTotal) {
+	public OrderItem(int orderId, int menuId, int quantity, float subTotal) {
 		super();
 		this.orderId = orderId;
 		this.menuId = menuId;

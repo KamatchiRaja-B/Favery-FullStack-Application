@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.favery.dao.OrderTableDao;
-import com.favery.model.orderTable;
+import com.favery.model.OrderTable;
 import com.favery.util.MyConnection;
 
 public class OrderTableDaoImpl implements OrderTableDao {
@@ -16,8 +17,8 @@ public class OrderTableDaoImpl implements OrderTableDao {
     private Connection con = null;
     private PreparedStatement pstmt = null;
     private ResultSet res = null;
-    private List<orderTable> orderList = new ArrayList<>();
-    private orderTable order = null;
+    private List<OrderTable> orderList = new ArrayList<>();
+    private OrderTable order = null;
 
     private static final String INSERT_QUERY = "INSERT INTO `ordertable` (`restaurantId`, `userId`, `totalAmount`, `status`, `paymentMode`) VALUES (?, ?, ?, ?, ?)";
     private static final String SELECT_QUERY = "SELECT * FROM `ordertable` WHERE `orderId` = ?";
@@ -30,23 +31,31 @@ public class OrderTableDaoImpl implements OrderTableDao {
     }
 
     @Override
-    public int addOrder(orderTable order) {
+    public int addOrder(OrderTable order) {
+    	int orderId = 0;
         try {
-            pstmt = con.prepareStatement(INSERT_QUERY);
+            pstmt = con.prepareStatement(INSERT_QUERY, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, order.getRestaurantId());
             pstmt.setInt(2, order.getUserId());
             pstmt.setFloat(3, order.getTotalAmount());
             pstmt.setString(4, order.getStatus());
             pstmt.setString(5, order.getPaymentMode());
             status = pstmt.executeUpdate();
+            if (status > 0) {
+                ResultSet generatedKeys = pstmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    orderId = generatedKeys.getInt(1);
+                    order.setOrderId(orderId);
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return status;
+        return orderId;
     }
 
     @Override
-    public orderTable getOrder(int orderId) {
+    public OrderTable getOrder(int orderId) {
         try {
             pstmt = con.prepareStatement(SELECT_QUERY);
             pstmt.setInt(1, orderId);
@@ -62,7 +71,7 @@ public class OrderTableDaoImpl implements OrderTableDao {
     }
 
     @Override
-    public List<orderTable> getAllOrders() {
+    public List<OrderTable> getAllOrders() {
         try {
             pstmt = con.prepareStatement(SELECT_ALL_QUERY);
             res = pstmt.executeQuery();
@@ -73,7 +82,7 @@ public class OrderTableDaoImpl implements OrderTableDao {
         return orderList;
     }
 
-    private List<orderTable> extractOrderFromResultSet(ResultSet res) {
+    private List<OrderTable> extractOrderFromResultSet(ResultSet res) {
         try {
             while (res.next()) {
                 int orderId = res.getInt("orderId");
@@ -83,7 +92,7 @@ public class OrderTableDaoImpl implements OrderTableDao {
                 String status = res.getString("status");
                 String paymentMode = res.getString("paymentMode");
 
-                order = new orderTable(orderId, restaurantId, userId, totalAmount, status, paymentMode);
+                order = new OrderTable(orderId, restaurantId, userId, totalAmount, status, paymentMode);
                 orderList.add(order);
             }
         } catch (SQLException e) {

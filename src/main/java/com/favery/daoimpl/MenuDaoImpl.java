@@ -47,23 +47,31 @@ public class MenuDaoImpl implements MenuDao {
         }
         return status;
     }
-
+    
     @Override
     public Menu getMenu(int menuId) {
+        Menu menu = null;
         try {
             pstmt = con.prepareStatement(SELECT_QUERY);
             pstmt.setInt(1, menuId);
             res = pstmt.executeQuery();
-            menuList = extractMenuFromResultSet(res);
-            if (!menuList.isEmpty()) {
-                menu = menuList.get(0);
+            
+            if (res.next()) {
+                int restaurantId = res.getInt("restaurantId");
+                String menuName = res.getString("menuName");
+                float price = res.getFloat("price");
+                String description = res.getString("description");
+                boolean isAvailable = res.getBoolean("isAvailable");
+                String imgPath = res.getString("imgPath");
+
+                menu = new Menu(menuId, restaurantId, menuName, price, description, isAvailable, imgPath);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return menu;
     }
-
+    
     @Override
     public int updateMenu(Menu menu) {
         try {

@@ -1,6 +1,8 @@
 package com.favery.dao;
 
 import java.util.List;
+import java.util.Map;
+
 import com.favery.model.Restaurant;
 
 public interface RestaurantDao {
